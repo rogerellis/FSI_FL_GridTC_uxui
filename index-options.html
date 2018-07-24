@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://localhost:49551/grid -->
+<html lang="en" class="gr__localhost">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+
+    <title>Home Page - Field Log</title>
+    <link type="text/css" rel="stylesheet" href="./assets/css">
+    <link rel="stylesheet" href="./assets/vendor.css">
+    <link rel="stylesheet" href="./assets/inpage.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.2/fc-3.2.5/fh-3.1.4/sc-1.5.0/datatables.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.2.6/css/fixedColumns.dataTables.min.css"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+
+
+    <style type="text/css">
+        /* Ensure that the demo table scrolls */
+
+        th,
+        td {
+            white-space: nowrap;
+        }
+
+        div.dataTables_wrapper {
+            width: 100%;
+            margin: 0 auto;
+        }
+    </style>
+    <link rel="stylesheet" href="./assets/grid-tc.css">
+
+</head>
+
+<body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
+
+    <div id="app-root" class="fullHeight container-fluid">
+        <div class="fullHeight row">
+            <div class="content ">
+                <div class="menu-side">
+                    <div class="main-menu open logo clearfix scrollable">
+                        <div class="userInfo">
+                            <div>
+                                <p class="business_name">ABC Construction</p>
+                                <p class="user_name ng-binding">President</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li class="menu_dashboard ">
+                                <a href="http://localhost:49551/" class="router-link-active">Dashboard</a>
+                            </li>
+                            <li data-ng-if="foundation.TimecardEnabled" class="menu_timecards dd opened">
+                                <div>
+                                    <a>Timecards
+                                        <i class="fa"></i>
+                                    </a>
+                                </div>
+                                <ul class="child collapse in">
+                                    <li data-ng-if="foundation.ClockEnabled" data-ng-click="redirectTo(&#39;/timecard/clockinout&#39;,$event)">
+                                        <a href="http://localhost:49551/clockinout" class="">Clock In/Clock Out</a>
+                                    </li>
+                                    <li data-ng-if="foundation.EnterTimecardsEnabled">
+                                        <a href="http://localhost:49551/timecards" class="">Single Timecard</a>
+                                    </li>
+                                    <li data-ng-if="client.TimecardApprovalEnabled&amp;&amp;foundation.isApprover">
+                                        <a ui-sref="timecard.approval">Approve Timecards</a>
+                                    </li>
+                                    <li data-ng-if="client.TimecardApprovalEnabled">
+                                        <a ui-sref="timecard.reject">Rejected Timecards</a>
+                                    </li>
+                                    <li data-ng-if="foundation.DailyTimecardEnabled">
+                                        <a href="http://localhost:49551/grid" class="router-link-exact-active router-link-active">Grid Timecards</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li data-ng-class="{&#39;active&#39;:$state.includes(&#39;jobFile&#39;)}" data-ng-if="foundation.ImagingEnabled" class="menu_jobFile">
+                                <a href="http://localhost:49551/jobfiles" class="">Job Files</a>
+                            </li>
+                            <li data-ng-class="{&#39;active&#39;:$state.includes(&#39;equipment&#39;)}" data-ng-if="foundation.EquipmentEnabled" class="menu_equipment ">
+                                <a href="http://localhost:49551/equipment" class="">Equipment</a>
+                            </li>
+                            <li data-ng-class="{&#39;active&#39;:$state.includes(&#39;material&#39;)}" data-ng-if="foundation.MaterialEnabled" class="menu_materials ">
+                                <a href="http://localhost:49551/materials" class="">Materials</a>
+                            </li>
+                            <li data-ng-class="{&#39;active&#39;:$state.includes(&#39;note&#39;)}" data-ng-if="foundation.NotesEnabled" class="menu_notes ">
+                                <a href="http://localhost:49551/notes" class="">Notes</a>
+                            </li>
+                            <li data-ng-class="{&#39;active&#39;:$state.includes(&#39;quantity&#39;)}" data-ng-if="foundation.QuantityEnabled" class="menu_quantity ">
+                                <a href="http://localhost:49551/quantitycomplete" class="">Quantity Complete</a>
+                            </li>
+                            <li data-ng-class="{&#39;active&#39;:$state.includes(&#39;weather&#39;)}" data-ng-if="foundation.WeatherEnabled" class="menu_weather ">
+                                <a href="http://localhost:49551/weather" class="">Weather</a>
+                            </li>
+                            <li data-ng-class="{&#39;active&#39;:$state.includes(&#39;rfc&#39;)}" data-ng-if="foundation.RFCEnabled" class="menu_rfc ">
+                                <a href="http://localhost:49551/rfc" class="">RFC</a>
+                            </li>
+                            <li data-ng-class="{&#39;opened&#39;:!reportCollapsed}" data-ng-if="foundation.DailyLogReportEnabled||foundation.SubmittedTimeReportEnabled"
+                                class="menu_reports">
+                                <div>
+                                    <a data-ng-click="reportCollapsed=!reportCollapsed">Reports</a>
+                                </div>
+                                <ul collapse="reportCollapsed" class="collapse">
+                                    <li data-ng-if="foundation.DailyLogReportEnabled" class="hasSubArrowWrap">
+                                        <div class=" hasSubArrow"></div>
+                                        <a ui-sref="report.daily">Daily Log</a>
+                                    </li>
+                                    <li data-ng-if="foundation.TimecardEnabled&amp;&amp;foundation.SubmittedTimeReportEnabled">
+                                        <a ui-sref="report.submit">Submitted Time</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li data-ng-class="{&#39;active&#39;:$state.includes(&#39;submit&#39;)}" class="menu_submit">
+                                <a href="http://localhost:49551/submitrecords" class="">Submit Records</a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li data-ng-click="switchMode()" class="menu_switch">
+                                <a>Set Default Job/Date</a>
+                            </li>
+                            <li data-ng-click="syncWithDB()" class="menu_sync">
+                                <a>Sync Data</a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li data-ng-class="{&#39;active&#39;:$state.includes(&#39;setting&#39;)}" class="menu_settings">
+                                <a href="http://localhost:49551/settings" class="">Settings</a>
+                            </li>
+                            <li class="menu_logout">
+                                <a>Sign Out</a>
+                            </li>
+                        </ul>
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPcAAAAUCAYAAABRXKt/AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAA4ASURBVHja7Jx7tFxVfcc/v5vrBIiGSHgM5EEAgdyY8AhgKMvSHMaJKS0BooBGUdRUQahSESzahwuxDQtQVIhoK40sXCgJiOFh6zCeBLVFCnoxuUlICHk0hkmI5EWSy9wkv/4xv4Gd7d5zzlyurlrzW+use2bPfpyz9+/x/X33nouqErrySD0tTqqnxYMYYFHVu7Q9+Q77Zb/sl32ks78N62lxAvAjYGE9LV5YSGp7BvC5xrdZf7HnHE4DpgBjgdHAAcCBwE7gZWAp8CTwgIjsctqNBG53urpSRH4dcUDHAbc6RTNFZJOqHgB8N9DkZyJyc6Sv84EP2ccXROQKK58I/EPGu+8CtgA9wKMi8nyG4zwS+LpXvBe4SET2eHUnA1e3uRZ9InKRqn4QuNDKlorI9V7fRwHn2VqfYOszFOgDdgBrgF8C94vI/3htv2rr6spGEflo5J27gH92ij4gItv+31t3fyJ3PS2OrKfFdfW0qHbdPoDP06GqL7cZuadZ23Gq+kwb7Vap6mjXyJzv+lT1DS2e8z1O3Z2q2tE0yMhYL8X6U9U7nXo/dMqvbnMedqvqjRnze1uk7XGBujdo+7LI2j7olM1x+hysqt9S1b05+3tFVWc47Qepam+k7tjIO1/m1NnyxxK5O/oRsQ8GfgiMcCNcPS1+aoCeaQwwxPn8ScmW+ao6BHgEOKnNsa6JIIblItLXou0E575HRPYGyl15M1DK0ZeLQt7a5twNAj5nETcWtT8WaTsuUHZSP9ZvceCdFjn3twAfBiRnfwXgS87ntwCDI3UvipS77/Gr/bA8bNgF4PsR2HxzPS2uLiS1B17nM53UCnK3kA+asWLQ7ibgP4B1BlsHA4cCpwOzgKLV7YoY2aKM8d4aeUZ3bp4FTvSU798z0pDFkef5V+COQNsjgI94ij0VWBCo+xlLUbDUZDBwrH0eCzzk1b8NmOOVfc8MDjO6n3jfrzBHe4z/Tqpa9JzLI8A3gWXAZmA3cAhwHPAp4J3Nd1TVQ0VkkzfvL1ggGGqfLwa+0Mb8/l6lUk2PBCYBi8qlZGVG3TGmz93lUrKlUk2nAJRLyY8G3LjraVFsoZMWKOCeelo8p5DUnhjAfHtRznZXOPdfEZG/D9TZAPSo6hnAlVZ2eA6DzXJCiyIG+RAwzAwQ4HxV/aib21paMNTvS1XFe54FItIdiciPAWc74xRzRO0vADMc4+7y24jIAq+PEY5hA9wrIk8FxjrDi8zNufwI0ExN1gAXiMhur/lmYKWqbnOMG+CNwCZv3leY457W1B1VHSsiy3I64t+3TLLg+DfmOFvJZcA/mr0tMCeIE8AGFJbPAt6bUedAYH49LR47QMa9UURezJGnj/Ha3ZvVxLnfan28waJXphKo6hu9SV4UUaRngarzeTgwuQUk3wsssfujTaFfhf6x5zFnUct4ZzdqrwTmAsud78fmWJsJ3hwuybGGmx1ScpqLAAKGHVsjgHqg7+eAx1pBc1U9BDjq/4hxtyOrgYXmvH53sLyeFq8CrsvZ52HAo/W0eFYhqb30Oo0770JMde63A90Z9Uf5xm3K3ZkzNxvnRaYeU6RhwEinfJkp5QxP+aoRZ/CciPQGkMGeFobUlEOc+00ZUftGEdmtqkudsq421+Z5EdmZwwk0kcihwBlO+eMZYx0biOj+M/QY/+OKD819DuQPIucul5I5gZRoYI27nhanA1+JfN1rMM1HACcCP6inxVIhqdXzPoxFTzdHPUdbU/fPiMgpwFlO2VMOuRUTNx9cGVCaHeY58yj5ZhFZH1GkJRYd1XEG01X1Sgeaj8+Ruy8XkXrGvLkE56qMqH1Ps1+nzjBVLYpIbQAcb4ggnOQ5xP9uY43Wi8gu22Y83kVGIvKcqq5y6vvQfLzXz5ZAfnuZpU93AFdZsFDgoXIpuaNSTY8Grjfd3AjMLpeShV4fB5gDnWI8wBrgLr+eU/98g95DbU1ml0tJt/P9mcCZwLxyKVkX6UOAS4HLbV42AHcDXy6Xkr6ODMM+yxShIwKbLm0R0d8OzLFcPa90tUnyNRXnbW0ojR8VVgSUYGmGg5gQiQRuHzUReUlENtLYU3eRzeQcuXs7eeIob426s6K2gyxoA5pPyBkBQ07gNKdsrc1L3jV63tGPjkDf81tA8zwk6WXAtUbA3mIp0Z8Bt1eq6S3AU4a+RhkyqFaq6Z86RjYM+E/Lo08CDrZ6CyrV9NrAeJcCD5rejgb+CniyUk3P89Dol2nsDsTkW8C3gVPMsMfQIJLvr1RT6Whh2CfapB0YqXJdIanNKyS1W4F/idR5L3Dj6yDTMo3bmNkT3MidgQ5Ge7nsM20oQVYEi5XP9dpPt2fpbJHnT2jDuLu8vL07R9TGDGxrHmiuqoO87xdH6g33CL2QcT+ZY23HBRyJOyfbRWSN3fuHhi7sh5M8ygypq1xKxgITbS6voXGYZkS5lLyFxjbeIOCTTttbgVOBzwKjy6XkVDO0JcBNlWo6yRtrInBFuZSMKJeS44FzbKx/q1TTIXkUv1JN30fj4NPjwNHlUjLeyOF5NA4HXdwhIvhX34Ijj7BcZnik79mFpHaL8/kqS/5D8tl6WpyZ01j9fd0RNPaHY9eXbEGkDUM4JWII49sw7gk5DNLt4z6PIJpmbLi/Z7s4Qu5l5Ymnu6mAiOyIRO2bAiTWsznz7mM9R784x9y483CCl66Q4UhOdop+nrFGPwfcU2ynquqofjjJ68qlZLnlvEsdVHdFuZRst/tv09iyO8aM7E3A+81xziqXErX2GwwuC/vu5AD8V7mU3Onk16lF4eEef9RK/hp4BbioXEpetH522nr3ATM6AhF7CPCol/O48gjwCbfA8urpxl6G5Ov1tPjONtnY1SKyXkS2tLjqNPZECeTQMXHz8x4R2WHs9zF5lMCIoSMiShZUPjs++TPnu5Hm6V1jesVRphN4bcvoVcKuhbgw/8eRqF0DfqCqw9zLy8+7cq5Nn5evx1DNOhHZYqf3QqlQq7EOCqRaQWQkIhpAR9PMuR3chpNMA5zSdndPulxK9honM8iKzjTeaX7TsB35qSGjyX7gDYz9k7zo1fL7003Xx1Wq6eTmZWnBBuBtHZ5hd1pYnxjp95fAJaFz5MaMn+fBPJe4u6+eFk9uw7jz7m8f5jLfrYgnk3c4980DJce3iGa+nOax2N1m9E2UEXMQ93mfz/OMaalDsrnzsKuVw1LVw4zfaEo1ErWLtuibvesSjwjNszZLWmxjhQxwKPvuj29sY43WisjSCFPuyve8z38ZSFeWZowbeq4scrbp6NcFGG+1OfcR8NpAPxucucqSw825jDOH5F8jgaIfub/RAhasBf6ikNR2xEYsJLVlwLtN6X0ZCjxcT4sjIkraau+4lbhQsdPgbswQxnnG+bAD//HY8phc4Dq7JgT2FE8Dyne/B83P9ZxKDAEsySD3rnFIyG00fszjR+28MsrWIctoe9pMWfw8clCLNWoywPuskaGMUbEoLCJPOsRbE824ZOXz7o+EQhKIvHnkpQyjPCQS8Hw51P5uylFXHURzauzqdKL2540sCMk24NxCUnsha9RCUnusnhY/Qfio5Egz8LMLSW17BpmWd4/b7WcI8EVVvQdYZdsnneZdzwRucCOlA4V8hv5vVfUbNA7RbFPVoYYQzgVmRqKF+/yr/D1gEVmvqo8bC9vMk9+Uw7hXmGL7jvJoY3Avd8rvFZHeQNSe4xCHvhzJvjseYyOkZF5OIhS5feW+TlW3A8vsSGnzsMmJwMc9o/xmhI8J6cdcc2qYY5vZj2DRrvzC/paAz3vweZwZ7YMZvISbLv4ix5jrafy6cQTwK0sV3HE/A+zqMMP+MI2jbiHpA95VSGo9ed+2kNRms+9PJ31C6756WhyUYdx5x/Oh1vXWdqftkfcZZJrnMbBftFwNfntP+9OWF261PrYan/BVxxFsZN9dgjwphcvqdniwsSfS13sCUHqNsaSXe2hjViTX/riI3Ba6gH9qwVI3o+lgD2XEmPLgUVoRedmDrZPNsb7Y/KkW8Bsa20nvd+rNF5HQbsaGplMIGHeMoP2dGHe5lNQMCr+9Uk0vdAysk9d+8HK31+xDlWp6slN3jDHfv2lBTLtj7rHAchSNbTTXsGeaHhzfWU+LUx3vGJKPFZLaY/1476uNGJoS+G4qMNuLLq5x786RH73KPJpnvCBn/d009nq/40G8x2mcz84jm4BLRGRrm5HtAUM0oS3IJlM+pAWZ2cqTzxCR1RGGPApHRWSrqtZ4bfsqlHd3eVA6D1O+12PFPwfc1QqSe7KQxln03PMrIk+r6ooAh9IOEuyPXGV6OLdSTefT+EHL2fbM88ql5PuBgPlEpZrOo/E/Bt5lxN/7yqWkN+eYfweUgTsr1XS62UuX2duvgRs6DSp/OtLBukJSm9efty0ktT31tHgxcLNHpjRlcD0tnlJIat0OW7zQYVn78owjIqqq02nsFV5gCjbcgbzbLfIup7G/Ot85UdbsY6+qlmkw/u+gsUV1uMPY9ppBr7RnnCsi2wNkzEKP+fSfdaPBfT869orIWgcmZx3N7KNx5niNRbtHnWOrU3ht66jXeJQsecCJcq8Evn+z8251EVndgv9o1nvBeSZE5G5V/alF5onGrww1R9drMHO1Ge7DIvJ0gLle6HElIbmNxgESX55u0aY7Uv5UiCgzFrzmRNIllWp6hun6VJuHtWaAs7ygsBD4GvDnNM6BHGTvfHm5lLi2tpp9z5Y/4SOGSjX9E+t/mq37y4YOry2Xkhcl779U2i/7Zb/8Ycn/DgAWffZMyeEMSQAAAABJRU5ErkJggg=="
+                            alt="" class="logoBg">
+                        <p class="copyright-menu-info">@2018 Foundation Software Inc.</p>
+                    </div>
+                </div>
+                <div class="noPadding">
+                    <div class="container-fluid">
+                        <div class="headerSection">
+                            <span class="ng-binding ng-scope">Grid Timecards</span>
+                            <!---->
+                            <!---->
+                            <!---->
+                            <!---->
+                        </div>
+                        <div class="container-fluid main">
+                            <div>
+                                <div class="col-12 daily-timecard">
+                                    <div class="action-bar row">
+                                        <div class="col-lg-2">
+                                            <span class="jobDatePart_week">Monday</span>
+                                            <span class="jobDatePart_date">07/09/2018</span>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <span class="jobNamePart_no">Job # 1</span>
+                                            <span class="jobNamePart_name ellipsis-text">1 - Hillcrest Hospital - Budgeted</span>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <span class="jobNamePart_no"> 1</span>
+                                            <span class="jobNamePart_name ellipsis-text">1 - Phase One (Cas_QAPhase_FL)</span>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <div class="daily-timecard-grid pdt15">
+                                        <form name="timecardForm" novalidate="novalidate" data-ng-class="{&#39;invalid&#39;:invalidGrid}">
+                                            <div class="row mrgb10 justify-content-between">
+                                                <div class="page-setting col-6">
+                                                    <span class="title-action">TIMECARDS</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="daily-timecard-actions clickable pull-right">
+                                                        <div class="dropdown-btn-wrap clickable mrgl15">
+                                                            <i class="fa fa-cog mrgt10 btn-hover"></i>
+                                                            <span>Options</span>
+                                                            <i class="fa fa-caret-down"></i>
+                                                            <ul data-v-0e6149e2="" class="dropdown-box dropdownMenu" style="display: none;">
+                                                                <dt data-v-0e6149e2="">
+                                                                    <span data-v-0e6149e2="" class="indication-arrow"></span>
+                                                                </dt>
+                                                                <li data-v-0e6149e2="">
+                                                                    <dl data-v-0e6149e2="">
+                                                                        <dd data-v-0e6149e2="">
+                                                                            <a data-v-0e6149e2="">Edit Employees</a>
+                                                                        </dd>
+                                                                        <dd data-v-0e6149e2="">
+                                                                            <a data-v-0e6149e2="">Edit Cost Codes</a>
+                                                                        </dd>
+                                                                    </dl>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="dataTables_wrapper opt-open">
+                                                <table id="example" class="stripe row-border order-column" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <div class="">Employee</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="gridhead">Details</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="gridhead">
+                                                                    <span class="costcode">1</span>General Costs</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="gridhead">
+                                                                    <span class="costcode">1</span>General Costs</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="gridhead">
+                                                                    <span class="costcode">1</span>General Costs</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="gridhead">
+                                                                    <span class="costcode">1</span>General Costs</div>
+                                                            </th>
+                                                            <th>
+                                                                <div class="gridhead">Total Hours</div>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="odd">
+                                                            <td class="employee_info clickable">
+                                                                <div>
+                                                                    <span class="employee_id">100</span>
+                                                                    <span class="employee_name"> Rachel Steve</span>
+                                                                    <i class="fa fa-angle-double-right"></i>
+                                                                </div>
+                                                                <div class="addl_amounts">
+                                                                    <span class="addl_amount_heading">ADDITIONAL AMOUNTS:</span>
+                                                                    <span class="addl_amount_total">$31.00</span>
+
+                                                                </div>
+                                                            </td>
+                                                            <td class="earn_code">
+
+                                                                <!--FORM GROUP-->
+
+                                                                <div class="form-group">
+                                                                    <div class="typeahead">
+                                                                        <div class="multiselect  ">
+                                                                            <div class="multiselect__select"></div>
+                                                                            <div class="multiselect__tags">
+                                                                                <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                <!---->
+                                                                                <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                <!---->
+                                                                                <span>
+                                                                                    <span class="multiselect__single">
+                                                                                        Trade
+                                                                                    </span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                <ul class="multiselect__content" style="display: inline-block;">
+                                                                                    <!---->
+                                                                                    <li class="multiselect__element">
+                                                                                        <!---->
+                                                                                        <span class="multiselect__option multiselect__option--disabled">
+                                                                                            <span>Recently Used</span>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                            <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                        </span>
+                                                                                        <!---->
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <!---->
+                                                                                        <span class="multiselect__option multiselect__option--disabled">
+                                                                                            <span>All Phases</span>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                            <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                        </span>
+                                                                                        <!---->
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!---->
+                                                                    </div>
+                                                                    <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                </div>
+
+                                                                <!--END FORM GROUP-->
+
+
+                                                                <!--FORM GROUP-->
+
+                                                                <div class="form-group">
+                                                                        <div class="typeahead">
+                                                                            <div class="multiselect  ">
+                                                                                <div class="multiselect__select"></div>
+                                                                                <div class="multiselect__tags">
+                                                                                    <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                    <!---->
+                                                                                    <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                    <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                    <!---->
+                                                                                    <span>
+                                                                                        <span class="multiselect__single">
+                                                                                            Shift
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                    <ul class="multiselect__content" style="display: inline-block;">
+                                                                                        <!---->
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>Recently Used</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>All Phases</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>2 - Phase Two</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>3 - Phase Three</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                    </div>
+
+                                                                    <!--END FORM GROUP-->
+
+
+                                                                    <!--FORM GROUP-->
+
+                                                                    <div class="form-group">
+                                                                        <div class="typeahead">
+                                                                            <div tabindex="-1" class="multiselect  ">
+                                                                                <div class="multiselect__select"></div>
+                                                                                <div class="multiselect__tags">
+                                                                                    <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                    <!---->
+                                                                                    <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                    <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                    <!---->
+                                                                                    <span>
+                                                                                        <span class="multiselect__single">
+                                                                                            Equipment
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                    <ul class="multiselect__content" style="display: inline-block;">
+                                                                                        <!---->
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>Recently Used</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>All Phases</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                    </div>
+
+                                                                    <!--END FORM GROUP-->
+
+
+                                                            </td>
+                                                            <td class="hours_wrapper">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                " class="hours_total ">
+                                                                </div>
+                                                            </td>
+
+                                                            <td rowspan="2">
+                                                                <div class="total_hours ">
+                                                                    0.00</div>
+                                                            </td>
+                                                        </tr>
+                                                        <!--Multiple-->
+                                                        <tr class="odd">
+                                                            <td>
+
+                                                            </td>
+                                                            <td class="earn_code">
+
+                                                                <!--FORM GROUP-->
+
+                                                                <div class="form-group">
+                                                                    <div class="typeahead">
+                                                                        <div class="multiselect  ">
+                                                                            <div class="multiselect__select"></div>
+                                                                            <div class="multiselect__tags">
+                                                                                <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                <!---->
+                                                                                <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                <!---->
+                                                                                <span>
+                                                                                    <span class="multiselect__single">
+                                                                                        Trade
+                                                                                    </span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                <ul class="multiselect__content" style="display: inline-block;">
+                                                                                    <!---->
+                                                                                    <li class="multiselect__element">
+                                                                                        <!---->
+                                                                                        <span class="multiselect__option multiselect__option--disabled">
+                                                                                            <span>Recently Used</span>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                            <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                        </span>
+                                                                                        <!---->
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <!---->
+                                                                                        <span class="multiselect__option multiselect__option--disabled">
+                                                                                            <span>All Phases</span>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                            <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                        </span>
+                                                                                        <!---->
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!---->
+                                                                    </div>
+                                                                    <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                </div>
+
+                                                                <!--END FORM GROUP-->
+
+
+                                                                <!--FORM GROUP-->
+
+                                                                <div class="form-group">
+                                                                        <div class="typeahead">
+                                                                            <div class="multiselect  ">
+                                                                                <div class="multiselect__select"></div>
+                                                                                <div class="multiselect__tags">
+                                                                                    <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                    <!---->
+                                                                                    <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                    <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                    <!---->
+                                                                                    <span>
+                                                                                        <span class="multiselect__single">
+                                                                                            Shift
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                    <ul class="multiselect__content" style="display: inline-block;">
+                                                                                        <!---->
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>Recently Used</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>All Phases</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>2 - Phase Two</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>3 - Phase Three</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                    </div>
+
+                                                                    <!--END FORM GROUP-->
+
+
+                                                                    <!--FORM GROUP-->
+
+                                                                    <div class="form-group">
+                                                                        <div class="typeahead">
+                                                                            <div tabindex="-1" class="multiselect  ">
+                                                                                <div class="multiselect__select"></div>
+                                                                                <div class="multiselect__tags">
+                                                                                    <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                    <!---->
+                                                                                    <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                    <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                    <!---->
+                                                                                    <span>
+                                                                                        <span class="multiselect__single">
+                                                                                            Equipment
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                    <ul class="multiselect__content" style="display: inline-block;">
+                                                                                        <!---->
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>Recently Used</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>All Phases</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                    </div>
+
+                                                                    <!--END FORM GROUP-->
+
+
+                                                            </td>
+                                                            <td class="hours_wrapper active">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5" class="hours_total ">
+                                                                </div>
+                                                            </td>
+
+                                                            <td style="display: none;">
+                                                            </td>
+                                                        </tr>
+                                                        <!--End Multiple-->
+                                                        <tr class="even opt-open">
+
+                                                            <td class="employee_info clickable">
+                                                                    <a href="Home Page - Field Log-options.html">
+                                                                            <div>
+                                                                    <span class="employee_id">101 (Click Me)</span>
+                                                                    <span class="employee_name">Sharon Prentiss</span>
+                                                                    <i class="fa fa-angle-double-right"></i>
+                                                                </div>
+                                                                </a>
+                                                            </td>
+                                                            <td class="earn_code">
+
+                                                                <!--FORM GROUP-->
+
+                                                                <div class="form-group">
+                                                                    <div class="typeahead">
+                                                                        <div class="multiselect  ">
+                                                                            <div class="multiselect__select"></div>
+                                                                            <div class="multiselect__tags">
+                                                                                <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                <!---->
+                                                                                <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                <!---->
+                                                                                <span>
+                                                                                    <span class="multiselect__single">
+                                                                                        Trade
+                                                                                    </span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                <ul class="multiselect__content" style="display: inline-block;">
+                                                                                    <!---->
+                                                                                    <li class="multiselect__element">
+                                                                                        <!---->
+                                                                                        <span class="multiselect__option multiselect__option--disabled">
+                                                                                            <span>Recently Used</span>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                            <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                        </span>
+                                                                                        <!---->
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <!---->
+                                                                                        <span class="multiselect__option multiselect__option--disabled">
+                                                                                            <span>All Phases</span>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                            <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                        </span>
+                                                                                        <!---->
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!---->
+                                                                    </div>
+                                                                    <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                </div>
+
+                                                                <!--END FORM GROUP-->
+
+
+                                                                <!--FORM GROUP-->
+
+                                                                <div class="form-group">
+                                                                        <div class="typeahead">
+                                                                            <div class="multiselect  ">
+                                                                                <div class="multiselect__select"></div>
+                                                                                <div class="multiselect__tags">
+                                                                                    <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                    <!---->
+                                                                                    <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                    <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                    <!---->
+                                                                                    <span>
+                                                                                        <span class="multiselect__single">
+                                                                                            Shift
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                    <ul class="multiselect__content" style="display: inline-block;">
+                                                                                        <!---->
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>Recently Used</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>All Phases</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>2 - Phase Two</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>3 - Phase Three</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                    </div>
+
+                                                                    <!--END FORM GROUP-->
+
+
+                                                                    <!--FORM GROUP-->
+
+                                                                    <div class="form-group">
+                                                                        <div class="typeahead">
+                                                                            <div tabindex="-1" class="multiselect  ">
+                                                                                <div class="multiselect__select"></div>
+                                                                                <div class="multiselect__tags">
+                                                                                    <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                    <!---->
+                                                                                    <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                    <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                    <!---->
+                                                                                    <span>
+                                                                                        <span class="multiselect__single">
+                                                                                            Equipment
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                    <ul class="multiselect__content" style="display: inline-block;">
+                                                                                        <!---->
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>Recently Used</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>All Phases</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                    </div>
+
+                                                                    <!--END FORM GROUP-->
+
+
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                    " class="hours_total ">
+                                                                </div>
+                                                            </td>
+
+                                                            <td>
+                                                                <div class="total_hours ">
+                                                                    0.00</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="employee_info clickable">
+                                                                <div>
+                                                                    <span class="employee_id">102</span>
+                                                                    <span class="employee_name">Greg Hamilton</span>
+                                                                    <i class="fa fa-angle-double-right"></i>
+                                                                </div>
+                                                            </td>
+                                                            <td class="earn_code">
+
+                                                                <!--FORM GROUP-->
+
+                                                                <div class="form-group">
+                                                                    <div class="typeahead">
+                                                                        <div class="multiselect  ">
+                                                                            <div class="multiselect__select"></div>
+                                                                            <div class="multiselect__tags">
+                                                                                <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                <!---->
+                                                                                <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                <!---->
+                                                                                <span>
+                                                                                    <span class="multiselect__single">
+                                                                                        Trade
+                                                                                    </span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                <ul class="multiselect__content" style="display: inline-block;">
+                                                                                    <!---->
+                                                                                    <li class="multiselect__element">
+                                                                                        <!---->
+                                                                                        <span class="multiselect__option multiselect__option--disabled">
+                                                                                            <span>Recently Used</span>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                            <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                        </span>
+                                                                                        <!---->
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <!---->
+                                                                                        <span class="multiselect__option multiselect__option--disabled">
+                                                                                            <span>All Phases</span>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                            <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                        </span>
+                                                                                        <!---->
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!---->
+                                                                    </div>
+                                                                    <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                </div>
+
+                                                                <!--END FORM GROUP-->
+
+
+                                                                <!--FORM GROUP-->
+
+                                                                <div class="form-group">
+                                                                        <div class="typeahead">
+                                                                            <div class="multiselect  ">
+                                                                                <div class="multiselect__select"></div>
+                                                                                <div class="multiselect__tags">
+                                                                                    <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                    <!---->
+                                                                                    <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                    <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                    <!---->
+                                                                                    <span>
+                                                                                        <span class="multiselect__single">
+                                                                                            Shift
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                    <ul class="multiselect__content" style="display: inline-block;">
+                                                                                        <!---->
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>Recently Used</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>All Phases</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>2 - Phase Two</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>3 - Phase Three</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                    </div>
+
+                                                                    <!--END FORM GROUP-->
+
+
+                                                                    <!--FORM GROUP-->
+
+                                                                    <div class="form-group">
+                                                                        <div class="typeahead">
+                                                                            <div tabindex="-1" class="multiselect  ">
+                                                                                <div class="multiselect__select"></div>
+                                                                                <div class="multiselect__tags">
+                                                                                    <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                    <!---->
+                                                                                    <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                    <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                    <!---->
+                                                                                    <span>
+                                                                                        <span class="multiselect__single">
+                                                                                            Equipment
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                    <ul class="multiselect__content" style="display: inline-block;">
+                                                                                        <!---->
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>Recently Used</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>All Phases</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                    </div>
+
+                                                                    <!--END FORM GROUP-->
+
+
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                        " class="hours_total ">
+                                                                </div>
+                                                            </td>
+
+                                                            <td>
+                                                                <div class="total_hours ">
+                                                                    0.00</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="even">
+                                                            <td class="employee_info clickable">
+                                                                <div>
+                                                                    <span class="employee_id">103</span>
+                                                                    <span class="employee_name"> Paula Steve</span>
+                                                                    <i class="fa fa-angle-double-right"></i>
+                                                                </div>
+                                                            </td>
+                                                            <td class="earn_code">
+
+                                                                <!--FORM GROUP-->
+
+                                                                <div class="form-group">
+                                                                    <div class="typeahead">
+                                                                        <div class="multiselect  ">
+                                                                            <div class="multiselect__select"></div>
+                                                                            <div class="multiselect__tags">
+                                                                                <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                <!---->
+                                                                                <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                <!---->
+                                                                                <span>
+                                                                                    <span class="multiselect__single">
+                                                                                        Trade
+                                                                                    </span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                <ul class="multiselect__content" style="display: inline-block;">
+                                                                                    <!---->
+                                                                                    <li class="multiselect__element">
+                                                                                        <!---->
+                                                                                        <span class="multiselect__option multiselect__option--disabled">
+                                                                                            <span>Recently Used</span>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                            <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                        </span>
+                                                                                        <!---->
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <!---->
+                                                                                        <span class="multiselect__option multiselect__option--disabled">
+                                                                                            <span>All Phases</span>
+                                                                                        </span>
+                                                                                    </li>
+                                                                                    <li class="multiselect__element">
+                                                                                        <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                            <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                        </span>
+                                                                                        <!---->
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!---->
+                                                                    </div>
+                                                                    <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                </div>
+
+                                                                <!--END FORM GROUP-->
+
+
+                                                                <!--FORM GROUP-->
+
+                                                                <div class="form-group">
+                                                                        <div class="typeahead">
+                                                                            <div class="multiselect  ">
+                                                                                <div class="multiselect__select"></div>
+                                                                                <div class="multiselect__tags">
+                                                                                    <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                    <!---->
+                                                                                    <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                    <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                    <!---->
+                                                                                    <span>
+                                                                                        <span class="multiselect__single">
+                                                                                            Shift
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                    <ul class="multiselect__content" style="display: inline-block;">
+                                                                                        <!---->
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>Recently Used</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>All Phases</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>2 - Phase Two</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>3 - Phase Three</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                    </div>
+
+                                                                    <!--END FORM GROUP-->
+
+
+                                                                    <!--FORM GROUP-->
+
+                                                                    <div class="form-group">
+                                                                        <div class="typeahead">
+                                                                            <div tabindex="-1" class="multiselect  ">
+                                                                                <div class="multiselect__select"></div>
+                                                                                <div class="multiselect__tags">
+                                                                                    <div class="multiselect__tags-wrap" style="display: none;"></div>
+                                                                                    <!---->
+                                                                                    <div class="multiselect__spinner" style="display: none;"></div>
+                                                                                    <input name="" type="text" autocomplete="off" placeholder="To Phase" tabindex="0" class="multiselect__input" style="display: none;">
+                                                                                    <!---->
+                                                                                    <span>
+                                                                                        <span class="multiselect__single">
+                                                                                            Equipment
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="multiselect__content-wrapper" style="max-height: 300px; display: none;">
+                                                                                    <ul class="multiselect__content" style="display: inline-block;">
+                                                                                        <!---->
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>Recently Used</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option multiselect__option--highlight">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <!---->
+                                                                                            <span class="multiselect__option multiselect__option--disabled">
+                                                                                                <span>All Phases</span>
+                                                                                            </span>
+                                                                                        </li>
+                                                                                        <li class="multiselect__element">
+                                                                                            <span data-select="" data-selected="" data-deselect="" class="multiselect__option">
+                                                                                                <span>1 - Phase One (Cas_QAPhase_FL)</span>
+                                                                                            </span>
+                                                                                            <!---->
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!---->
+                                                                        </div>
+                                                                        <label data-v-00b06ca2="" class="">To Phase</label>
+                                                                    </div>
+
+                                                                    <!--END FORM GROUP-->
+
+
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                            </td>
+                                                            <td class="hours_wrapper ">
+                                                                <div>
+                                                                    <span class="hours_label ">REG</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">OT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                                <div>
+                                                                    <span class="hours_label ">DT</span>
+                                                                    <input type="text " min="0 " max="999999.99 " maxlength="9 " size="5
+                                                                            " class="hours_total ">
+                                                                </div>
+                                                            </td>
+
+                                                            <td>
+                                                                <div class="total_hours ">
+                                                                    0.00</div>
+                                                            </td>
+                                                        </tr>
+
+
+                                                    </tbody>
+                                                </table>
+                                                </div>
+                                                <div class="daily-timecard-buttons">
+                                                    <!---->
+                                                    <button class="btn btn-lg btn-primary">SUBMIT</button>
+                                                    <button class="btn btn-lg btn-primary mrgl10">SAVE</button>
+                                                    <button class="btn btn-lg btn-cancel btn-default mrgl10">CANCEL</button>
+                                                </div>
+                                        </form>
+                                        </div>
+                                        <!--EMPLOYEE TIMECARD OPTIONS-->
+                                        <div  class="daily-timecard-options open">
+                                                    <button  type="button" aria-label="Close" class="close">
+                                                    <span  aria-hidden="true">×</span>
+                                                </button>
+                                                <div  class="panel panel-default">
+                                                    <div  class="panel-heading">
+                                                        <strong >
+                                                            170
+                                                            <br > Sharon Prentiss
+                                                        </strong>
+                                                    </div>
+                                                    <div  class="panel-body">
+                                                        <form  name="amountForm" novalidate="novalidate">
+                                                            <div >
+                                                                <strong >EMPLOYEE HOURS: 0.00</strong>
+                                                                <ul >
+                                                                    <li >
+                                                                        <i  class="fa fa-plus-circle clickable"></i>
+                                                                        <strong  class="mrgl5 clickable">Add row</strong>
+                                                                    </li>
+                                                                    <li >
+                                                                        <i  data-ng-class="{'clickable':current.rows.length>1}" class="fa fa-minus-circle"></i>
+                                                                        <strong  data-ng-class="{'text-lightgray':current.rows.length<=1,'clickable':current.rows.length>1}" class="mrgl5">Delete rows</strong>
+                                                                    </li>
+                                                                </ul>
+                                                                <hr >
+                                                                <strong >EMPLOYEE AMOUNTS:</strong>
+                                                                <div  class="daily-timecard-options-list mrgt10">
+                                                                    <ul >
+                                                                        <li  class="form-group">
+                                                                            <span  class="fa fa-plus-circle text-primary clickable"></span>
+                                                                            <strong  class="mrgl5 clickable">Add Amount</strong>
+                                                                        </li>
+                                                                        <li  class="row mrgr0 mrgl0">
+                                                                            <i  class="col-6 pdl0">EARN CODE</i>
+                                                                            <i  class="col-5 pdl0">AMOUNT</i>
+                                                                            <span  class="col-1 pdr0"></span>
+                                                                        </li>
+                                                                        <li  ng-style="{'max-height':(view.height-463)}" class="pdr10 scrollarea row mrgr0 mrgl0"></li>
+                                                                        <li  class="row mrgr0 mrgl0">
+                                                                            <span  class="col-6 pdl0 ellipsis-text">TOTAL</span>
+                                                                            <span  class="col-5 pdl0">$0.00</span>
+                                                                            <span  class="col-1 pdr0"></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <!---->
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <div>
+                                            <div id="__BVID__69____BV_modal_outer_ ">
+                                                <div role="dialog " aria-hidden="true " class="modal fade " id="__BVID__69_
+                                                                " style="display: none; ">
+                                                    <div class="modal-dialog modal-lg ">
+                                                        <div tabindex="-1 " role="document " class="modal-content
+                                                                " aria-labelledby="__BVID__69____BV_modal_header_ " aria-describedby="__BVID__69____BV_modal_body_ ">
+                                                            <header class="modal-header " id="__BVID__69____BV_modal_header_ ">
+                                                                <h5 class="modal-title ">Warning</h5>
+                                                                <!---->
+                                                            </header>
+                                                            <div class="modal-body " id="__BVID__69____BV_modal_body_ ">
+                                                                You have removed a Cost Code that has hours entered against it. Continue?
+                                                            </div>
+                                                            <footer class="modal-footer " id="__BVID__69____BV_modal_footer_ ">
+                                                                <button type="button " class="btn btn-primary ">OK</button>
+                                                                <button type="button " class="btn btn-secondary ">Cancel</button>
+                                                            </footer>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!---->
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div id="__BVID__71____BV_modal_outer_ ">
+                                                <div role="dialog " aria-hidden="true " class="modal fade " id="__BVID__71_
+                                                                " style="display: none; ">
+                                                    <div class="modal-dialog modal-lg ">
+                                                        <div tabindex="-1 " role="document " class="modal-content
+                                                                " aria-labelledby="__BVID__71____BV_modal_header_ " aria-describedby="__BVID__71____BV_modal_body_ ">
+                                                            <header class="modal-header " id="__BVID__71____BV_modal_header_ ">
+                                                                <h5 class="modal-title ">Warning</h5>
+                                                                <!---->
+                                                            </header>
+                                                            <div class="modal-body " id="__BVID__71____BV_modal_body_ ">
+                                                                You have removed an Employee who has hours/amounts entered against them. Continue?
+                                                            </div>
+                                                            <footer class="modal-footer " id="__BVID__71____BV_modal_footer_ ">
+                                                                <button type="button " class="btn btn-primary ">OK</button>
+                                                                <button type="button " class="btn btn-secondary ">Cancel</button>
+                                                            </footer>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!---->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="notifications " style="width: 300px; bottom: 0px; left: calc(50% - 150px); ">
+                <span></span>
+            </div>
+        </div>
+        <script type="text/javascript " src="https://code.jquery.com/jquery-3.3.1.js "></script>
+        <script type="text/javascript " src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js "></script>
+        <script type="text/javascript " src="https://cdn.datatables.net/fixedcolumns/3.2.6/js/dataTables.fixedColumns.min.js "></script>
+
+        <script type="text/javascript ">
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                scrollY: "400px ",
+                scrollX: true,
+                scrollCollapse: true,
+                paging: false,
+                searching: false,
+                ordering: false,
+                stripeClasses: [],
+                fixedColumns: {
+                    leftColumns: 1,
+                    rightColumns: 1
+                }
+            });
+        });
+    </script>
+        <script type="text/javascript ">
+$(document).ready(function(){
+	$('.multiselect').click(function(){
+		$(this).toggleClass('active');
+	});
+});
+</script>
+</body>
+
+</html>

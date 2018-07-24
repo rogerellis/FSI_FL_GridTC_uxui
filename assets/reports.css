@@ -1,0 +1,54 @@
+.fl-reports {
+    position: absolute;
+    width: 100% !important;
+    left: 0;
+    padding-left: 265px;
+}
+table table {
+    width: 100%;
+}
+tr.spacer{
+    background: #e1e4e8 !important;
+    border-bottom: none !important;
+}
+tr.column-header {
+    background: #202020 !important;
+    color: #FFFFFF !important;
+}
+tr.category-row {
+    text-transform: uppercase !important;
+}
+.report-container table td {
+    width: 12.5%;
+}
+.dt-buttons {
+    text-align: right !important;
+}
+td.outer {
+    padding: 0 !important;
+}
+.report-container table {
+    background: #FFFFFF;
+}
+thead tr {
+    background: #dddddd !important;
+    color: #202020;
+}
+thead tr.category-row {
+    background: #afb3b9 !important;
+    color: #202020;
+    font-size: 18px;
+}
+.nowrap {
+    white-space: nowrap !important;
+}
+@media (max-width: 1000px) {
+    .menu-side {
+        display: none !important;
+    }
+}
+@media print {
+    .menu-side {
+         display: none !important;
+     }
+ }

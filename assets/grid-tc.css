@@ -1,0 +1,335 @@
+.dataTables_wrapper {
+  color: #4d4d4d;
+}
+
+.dataTables_wrapper th {
+  background: #333333;
+  color: #fff;
+}
+.DTFC_LeftHeadWrapper th,
+.DTFC_RightHeadWrapper th,
+div.DTFC_Blocker {
+  background: #202020;
+}
+.hours_wrapper {
+  min-width: 160px;
+}
+.hours_wrapper > div {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.hours_wrapper > div a {
+  display: none;
+}
+.hours_wrapper > div:hover a {
+  display: block;
+}
+.hours_wrapper > div:hover span.hours_label {
+  left: 20px;
+}
+.earn_code {
+  border-left: 1px solid #d6d8dc;
+}
+.earn_code div {
+  /*display: flex;
+    align-items: center;
+    padding: 0 5px;*/
+}
+.earn_code_name {
+  flex: 1;
+}
+.odd .hours_wrapper > div:nth-child(even),
+.odd .earn_code > div.form-group:nth-child(even) .multiselect__tags {
+  background: rgba(255, 255, 255, 0.2);
+}
+.even .hours_wrapper > div:nth-child(even),
+.even .earn_code > div.form-group:nth-child(even) .multiselect__tags {
+  background: #e1e4e8;
+}
+.hours_wrapper {
+  min-width: 160px;
+  border-left: 1px solid #d6d8dc;
+}
+.hours_wrapper.active {
+  border: 3px solid #fbc018 !important;
+}
+table.dataTable .employee_info,
+table.dataTable .earn_code,
+table.dataTable .hours_wrapper {
+  padding: 8px 20px;
+}
+.dataTables_wrapper .clickable {
+  color: #0076a3;
+}
+.dataTables_wrapper .clickable a {
+  color: #0076a3;
+}
+.dataTables_wrapper .clickable a:hover {
+  color: #0098d4;
+}
+
+.employee_info span {
+  line-height: 16px;
+}
+.employee_info div {
+  min-width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.employee_id {
+  display: block;
+  width: 100%;
+}
+.employee_name {
+  font-weight: bold;
+}
+.employee_info i {
+  margin-left: auto;
+  color: #0076a3;
+}
+span.costcode {
+  display: block;
+}
+input.hours_total {
+  flex: 1;
+  text-align: right;
+  background: transparent;
+  border: none;
+  padding-right: 7px;
+  z-index: 10;
+  height: 33px;
+}
+span.hours_label {
+  position: absolute;
+  left: 5px;
+  z-index: 0;
+  line-height: 33px;
+}
+
+.earn_code {
+  min-width: 250px;
+}
+.earn_code_name {
+  color: #aaaaaa;
+}
+.DTFC_LeftBodyWrapper {
+  border-right: 1px solid #333333;
+  -webkit-box-shadow: 1px -1px 8px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px -1px 8px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px -1px 8px 0px rgba(0, 0, 0, 0.3);
+}
+.DTFC_RightBodyWrapper {
+  border-left: 1px solid #333333;
+  -webkit-box-shadow: -1px -1px 8px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: -1px -1px 8px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: -1px -1px 8px 0px rgba(0, 0, 0, 0.3);
+}
+.DTFC_RightBodyWrapper .DTFC_Cloned {
+  background: #fbc018;
+}
+.total_hours {
+  font-weight: bold;
+  text-align: right;
+  padding-right: 20px;
+}
+.addl_amounts {
+  font-size: 12px;
+  font-weight: bold;
+  /* border-top: 1px solid #cbcdd1; */
+  background: #4abf73;
+  color: white;
+  padding: 0 5px;
+  margin-top: 5px;
+}
+.addl_amount_heading {
+  flex: 1;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+  border-bottom: none;
+}
+table.dataTable tbody tr {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+table.dataTable.stripe tbody tr.odd,
+table.dataTable.display tbody tr.odd {
+  background-color: #e1e4e8;
+}
+
+.DTFC_Cloned tr.even + tr.even td,
+.DTFC_Cloned tr.odd + tr.odd td {
+  border-top: none;
+}
+.DTFC_Cloned {
+  background-color: #d6d8dc;
+  position: relative;
+}
+.DTFC_Cloned tr.even {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.DTFC_Cloned tr.odd {
+  background-color: transparent !important;
+}
+.DTFC_LeftBodyWrapper,
+.DTFC_RightBodyWrapper {
+  z-index: 99;
+}
+.action-bar {
+  width: 100%;
+  color: #202020;
+  font-size: inherit !important;
+  line-height: normal !important;
+  background-color: transparent;
+  padding: 0;
+  /* position: absolute; */
+}
+.action-bar span {
+  display: block;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 0 15px;
+}
+.action-bar span:first-child {
+  padding-top: 10px;
+  font-weight: normal;
+}
+.action-bar span + span {
+  border-bottom: 2px solid #fbc018;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+.daily-timecard-buttons {
+  padding: 15px;
+  text-align: right;
+  clear: both;
+  position: fixed;
+  width: 100%;
+  padding-right: 280px;
+  bottom: 0;
+  background: #e1e4e8;
+  z-index: 999;
+}
+.dataTables_scrollBody {
+  max-height: calc(100vh - 365px) !important;
+}
+a:not([href]):not([tabindex]) {
+  color: #ffffff;
+  text-decoration: none;
+}
+tr.opt-open,
+.DTFC_Cloned tr.opt-open {
+  background-color: #ffffff !important;
+  border-top: 3px solid #fbc018 !important;
+  border-bottom: 3px solid #fbc018 !important;
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  position: fixed;
+}
+tr.opt-open + tr {
+  padding-top: 76px !important;
+}
+.opt-open .dataTables_scrollBody {
+  overflow: hidden !important;
+}
+.opt-open .dataTables_scrollBody:after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+}
+.opt-open .DTFC_LeftBodyWrapper,
+.opt-open .DTFC_RightBodyWrapper {
+  display: none !important;
+}
+.opt-open div.dataTables_wrapper div.dataTables_info {
+    background: transparent;
+}
+.opt-open + .daily-timecard-buttons {
+    background: transparent;
+}
+.form-group {
+  margin-bottom: 0px;
+}
+.form-group:last-child {
+  margin-bottom: 0 !important;
+}
+.multiselect.active .multiselect__tags {
+  border-color: #fbc018 !important;
+}
+.multiselect.active .multiselect__content-wrapper {
+  display: block !important;
+}
+.typeahead .multiselect__content-wrapper {
+  top: 31px;
+}
+.typeahead .multiselect__tags {
+  height: auto !important;
+  padding: 0 !important;
+  min-height: auto !important;
+}
+.typeahead .multiselect__single {
+  margin-bottom: 0;
+  padding: 0;
+  padding: 8px 5px 8px 0 !important;
+  line-height: 13px;
+}
+.typeahead .multiselect__select {
+  height: auto !important;
+}
+.multiselect__select:before {
+  top: 15px;
+}
+.multiselect {
+  min-height: auto !important;
+}
+.typeahead .multiselect__tags {
+  background: transparent;
+  border-color: transparent;
+  padding-left: 5px !important;
+  border-radius: 0 !important;
+}
+.typeahead .multiselect__tags > span > span {
+  background: transparent;
+}
+.form-group label {
+  display: none !important;
+}
+div.dataTables_wrapper div.dataTables_info {
+  padding-top: 0.85em;
+  white-space: nowrap;
+  width: 100%;
+  background: #e1e4e8;
+  z-index: 9999;
+  position: relative !important;
+  padding-top: 10px !important;
+}
+.daily-timecard-options {
+  width: 350px;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  right: -25%;
+  transition: all 300ms;
+  transition: all 0ms\9;
+  z-index: 9999;
+  border: none;
+  background-color: rgba(32,32,32,0.98);
+  color: #7e7e7e;
+  padding: 50px 30px;
+  -webkit-box-shadow: -5px 0px 60px -16px rgba(0,0,0,0.75);
+-moz-box-shadow: -5px 0px 60px -16px rgba(0,0,0,0.75);
+box-shadow: -5px 0px 60px -16px rgba(0,0,0,0.75);
+}
+@media (max-width: 991.98px) {
+  .dataTables_scrollBody {
+    max-height: calc(100vh - 465px) !important;
+  }
+  .employee_info div {
+    min-width: 200px;
+  }
+}
